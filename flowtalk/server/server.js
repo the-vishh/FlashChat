@@ -206,7 +206,7 @@ io.on("connection", (socket) =>
 // Basic route for homepage
 app.get("/", (req, res) =>
 {
-  res.sendFile(path.join(__dirname, "../public/flowtalk.html"));
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 // API endpoint to get room statistics (optional)
