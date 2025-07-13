@@ -1,0 +1,25 @@
+{
+  "name": "flowtalk",
+  "version": "1.0.0",
+  "description": "A real-time chat application with modern UI",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node server/server.js"
+  },
+  "keywords": [
+    "chat",
+    "realtime",
+    "websocket",
+    "nodejs"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2"
+  }
+}
