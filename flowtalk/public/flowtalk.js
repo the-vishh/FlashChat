@@ -1,5 +1,5 @@
 // FlowTalk Client-Side JavaScript
-const socket = io();
+const socket = io("https://flowtalk-na0g.onrender.com");
 
 // DOM Elements
 const loginContainer = document.getElementById("login-container");

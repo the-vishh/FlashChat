@@ -16,10 +16,6 @@
       "dest": "server/server.js"
     },
     {
-      "src": "/",
-      "dest": "public/flowtalk.html"
-    },
-    {
       "src": "/(.*)",
       "dest": "public/$1"
     }
