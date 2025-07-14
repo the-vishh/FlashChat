@@ -33,11 +33,11 @@ A real-time chat application built with modern web technologies, featuring a cle
 FlowTalk/
 ├── public/              # Frontend files
 │   ├── index.html
-│   ├── style.css
+│   ├── flowtalk.css
 │   └── flowtalk.js
 ├── server/              # Backend files
 │   └── server.js
-├── package.json         # Project metadata and scripts
+├── package.json     # Project metadata and scripts
 ├── vercel.json          # Vercel deployment config
 └── README.md            # This file
 ```
