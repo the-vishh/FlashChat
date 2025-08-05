@@ -1,6 +1,6 @@
 # FlashChat⚡
 
-A lightning-fast, ephemeral chat application where conversations vanish when you leave - no accounts, no history, just instant messaging.
+A lightning-fast, ephemeral chat application where conversations vanish when you leave
 
 ---
 
