@@ -1,4 +1,4 @@
-# FlashChat ⚡
+# FlashChat⚡
 A lightning-fast, ephemeral chat application where conversations vanish when you leave - no accounts, no history, just instant messaging.
 
 ---
@@ -21,8 +21,8 @@ A lightning-fast, ephemeral chat application where conversations vanish when you
 
 ## 🚀 Live Demo
 
-🖥️ **Frontend (Vercel)**: [https://flow-talk-blond.vercel.app/](https://flow-talk-blond.vercel.app/)  
-🌐 **Backend (Render)**:  [https://flowtalk-na0g.onrender.com](https://flowtalk-na0g.onrender.com)
+🖥️ **Frontend (Vercel)**: [https://flash-chat-henna.vercel.app/](https://flash-chat-henna.vercel.app/)  
+🌐 **Backend (Render)**:  [https://flashchat-lhed.onrender.com](https://flashchat-lhed.onrender.com)
 
 ---
 
@@ -113,8 +113,8 @@ FlashChat/
 
 | Service  | Environment | URL |
 |----------|-------------|-----|
-| Backend  | Production  | https://flowtalk-na0g.onrender.com |
-| Frontend | Production  | https://flow-talk-blond.vercel.app/ |
+| Backend  | Production  | https://flashchat-lhed.onrender.com |
+| Frontend | Production  | https://flash-chat-henna.vercel.app/ |
 | Local    | Development | http://localhost:3000 |
 
 ---
@@ -199,7 +199,7 @@ NODE_ENV=production          # Environment mode
 ```
 
 ### Client Configuration
-Update the Socket.IO connection URL in `flowtalk.js`:
+Update the Socket.IO connection URL in `FlashChat.js`:
 ```javascript
 const socket = io("your-backend-url-here");
 ```
