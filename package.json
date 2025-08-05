@@ -1,7 +1,7 @@
 {
-  "name": "flowtalk",
+  "name": "FlashChat",
   "version": "1.0.0",
-  "description": "A real-time chat application with modern UI",
+  "description": "A real-time chat application",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
