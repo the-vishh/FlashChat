@@ -1,4 +1,5 @@
-# FlashChat ⚡
+# FlashChat⚡
+
 A lightning-fast, ephemeral chat application where conversations vanish when you leave - no accounts, no history, just instant messaging.
 
 ---
@@ -20,15 +21,19 @@ A lightning-fast, ephemeral chat application where conversations vanish when you
 ---
 
 ### 🔑 Login Page
+
 ![FlashChat Login](assets/login-page.png)
 
 ### 💬 Chat Interface
+
 ![FlashChat Chat](assets/chat-interface.png)
+
+---
 
 ## 🚀 Live Demo
 
-🖥️ **Frontend (Vercel)**: [https://flow-talk-blond.vercel.app/](https://flow-talk-blond.vercel.app/)
-🌐 **Backend (Render)**:  [https://flowtalk-na0g.onrender.com](https://flowtalk-na0g.onrender.com)
+🖥️ **Frontend (Vercel)**: [https://flash-chat-henna.vercel.app/](https://flash-chat-henna.vercel.app/)
+🌐 **Backend (Render)**: [https://flashchat-lhed.onrender.com](https://flashchat-lhed.onrender.com)
 
 ---
 
@@ -43,6 +48,7 @@ FlashChat is built around the philosophy of **truly temporary communication**:
 - **Instant Connection** – Start chatting in seconds
 
 Perfect for:
+
 - Quick team discussions
 - Temporary project coordination
 - Private conversations that shouldn't leave traces
@@ -75,12 +81,15 @@ Perfect for:
 
 ```
 FlashChat/
-├── public/              # Frontend files
+├── public/              # Root folder
 │   ├── index.html       # Main HTML structure
 │   ├── FlashChat.css     # Styling and animations
 │   └── FlashChat.js      # Client-side JavaScript with validation
 ├── server/              # Backend files
 │   └── server.js        # Express server with Socket.IO and security
+├── assets/          ← Create this folder
+│   ├── login-page.png
+│   ├── chat-interface.png
 ├── package.json         # Project dependencies and scripts
 ├── vercel.json          # Vercel deployment configuration
 └── README.md            # Documentation
@@ -91,17 +100,20 @@ FlashChat/
 ## ⚙️ Getting Started (Local Development)
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/the-vishh/FlashChat.git
    cd FlashChat
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Run the development server**
+
    ```bash
    npm start
    ```
@@ -117,23 +129,25 @@ FlashChat/
 
 ## 🌍 Environment URLs
 
-| Service  | Environment | URL |
-|----------|-------------|-----|
-| Backend  | Production  | https://flowtalk-na0g.onrender.com |
-| Frontend | Production  | https://flow-talk-blond.vercel.app/ |
-| Local    | Development | http://localhost:3000 |
+| Service  | Environment | URL                                  |
+| -------- | ----------- | ------------------------------------ |
+| Backend  | Production  | https://flashchat-lhed.onrender.com  |
+| Frontend | Production  | https://flash-chat-henna.vercel.app/ |
+| Local    | Development | http://localhost:3000                |
 
 ---
 
 ## 🚀 Deployment
 
 ### Frontend (Vercel)
+
 ```bash
 # Deploy to Vercel
 vercel --prod
 ```
 
 ### Backend (Render)
+
 - Connected to GitHub for automatic deployments
 - Environment: Node.js
 - Build Command: `npm install`
@@ -163,11 +177,13 @@ We welcome contributions! Here's how to get started:
 6. **Push and create a pull request**
 
 ### 🐛 Bug Reports
+
 - Use GitHub Issues
 - Include steps to reproduce
 - Mention browser/device details
 
 ### 💡 Feature Requests
+
 - Check existing issues first
 - Explain the use case
 - Consider the ephemeral philosophy
@@ -179,11 +195,13 @@ We welcome contributions! Here's how to get started:
 ### WebSocket Events
 
 **Client → Server:**
+
 - `join-room` - Join a chat room
 - `chat-message` - Send a message
 - `leave-room` - Leave current room
 
 **Server → Client:**
+
 - `join-success` - Room join confirmed
 - `username-taken` - Username conflict error
 - `user-joined` - Someone joined the room
@@ -191,6 +209,7 @@ We welcome contributions! Here's how to get started:
 - `new-message` - New message received
 
 ### REST API
+
 - `GET /` - Serve main application
 - `GET /api/stats` - Get server statistics (optional)
 
@@ -199,13 +218,16 @@ We welcome contributions! Here's how to get started:
 ## 🔧 Configuration
 
 ### Environment Variables
+
 ```bash
 PORT=3000                    # Server port (default: 3000)
 NODE_ENV=production          # Environment mode
 ```
 
 ### Client Configuration
-Update the Socket.IO connection URL in `flowtalk.js`:
+
+Update the Socket.IO connection URL in `FlashChat.js`:
+
 ```javascript
 const socket = io("your-backend-url-here");
 ```
@@ -229,6 +251,7 @@ Built with ❤️ by [@the-vishh](https://github.com/the-vishh)
 ## ⭐️ Show Your Support
 
 If you find FlashChat useful, please consider:
+
 - ⭐ Starring this repository
 - 🍴 Forking for your own projects
 - 🐛 Reporting bugs or suggesting features
@@ -237,6 +260,7 @@ If you find FlashChat useful, please consider:
 ---
 
 ### 📝 Quick Deploy Commands:
+
 ```bash
 git add .
 git commit -m "Update to FlashChat with enhanced security and ephemeral messaging"
