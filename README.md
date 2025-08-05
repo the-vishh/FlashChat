@@ -71,8 +71,8 @@ Perfect for:
 FlashChat/
 ├── public/              # Frontend files
 │   ├── index.html       # Main HTML structure
-│   ├── flowtalk.css     # Styling and animations
-│   └── flowtalk.js      # Client-side JavaScript with validation
+│   ├── FlashChat.css     # Styling and animations
+│   └── FlashChat.js      # Client-side JavaScript with validation
 ├── server/              # Backend files
 │   └── server.js        # Express server with Socket.IO and security
 ├── package.json         # Project dependencies and scripts
