@@ -33,6 +33,7 @@ A lightning-fast, ephemeral chat application where conversations vanish when you
 ## 🚀 Live Demo
 
 🖥️ **Frontend (Vercel)**: [https://flash-chat-henna.vercel.app/](https://flash-chat-henna.vercel.app/)
+
 🌐 **Backend (Render)**: [https://flashchat-lhed.onrender.com](https://flashchat-lhed.onrender.com)
 
 ---
@@ -87,7 +88,7 @@ FlashChat/
 │   └── FlashChat.js      # Client-side JavaScript with validation
 ├── server/              # Backend files
 │   └── server.js        # Express server with Socket.IO and security
-├── assets/          ← Create this folder
+├── assets/              
 │   ├── login-page.png
 │   ├── chat-interface.png
 ├── package.json         # Project dependencies and scripts
