@@ -214,7 +214,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## 👨‍💻 Author
 
-Built with ⚡ by [@the-vishh](https://github.com/the-vishh)
+Built with ❤️ by [@the-vishh](https://github.com/the-vishh)
 
 **FlashChat** - Where conversations are as temporary as lightning ⚡
 
