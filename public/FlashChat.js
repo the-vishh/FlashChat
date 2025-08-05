@@ -4,7 +4,7 @@ const socket = io(
   window.location.hostname === "localhost" ||
     window.location.hostname === "127.0.0.1"
     ? "http://localhost:3000"
-    : "https://flowtalk-na0g.onrender.com"
+    : "https://flashchat-lhed.onrender.com/"
 );
 
 // DOM Elements

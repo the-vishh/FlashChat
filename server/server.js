@@ -271,7 +271,7 @@ app.get("/api/stats", (req, res) => {
 // Start server
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`FlowTalk server running on port ${PORT}`);
+  console.log(`FlashChat server running on port ${PORT}`);
   console.log(`Open your browser to: http://localhost:${PORT}`);
 });
 
