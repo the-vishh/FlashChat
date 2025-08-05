@@ -18,6 +18,11 @@ A lightning-fast, ephemeral chat application where conversations vanish when you
 - 🔄 **Auto-Reconnect** – Seamless reconnection on network interruptions
 
 ---
+### 🔑 Login Page
+![FlashChat Login](assets/login-page.png)
+
+### 💬 Chat Interface  
+![FlashChat Chat](assets/chat-interface.png)
 
 ## 🚀 Live Demo
 
@@ -69,12 +74,15 @@ Perfect for:
 
 ```
 FlashChat/
-├── public/              # Frontend files
+├── public/              # Root folder
 │   ├── index.html       # Main HTML structure
 │   ├── FlashChat.css     # Styling and animations
 │   └── FlashChat.js      # Client-side JavaScript with validation
 ├── server/              # Backend files
 │   └── server.js        # Express server with Socket.IO and security
+├── assets/          ← Create this folder
+│   ├── login-page.png
+│   ├── chat-interface.png
 ├── package.json         # Project dependencies and scripts
 ├── vercel.json          # Vercel deployment configuration
 └── README.md            # Documentation
