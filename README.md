@@ -19,9 +19,15 @@ A lightning-fast, ephemeral chat application where conversations vanish when you
 
 ---
 
+### 🔑 Login Page
+![FlashChat Login](assets/login-page.png)
+
+### 💬 Chat Interface
+![FlashChat Chat](assets/chat-interface.png)
+
 ## 🚀 Live Demo
 
-🖥️ **Frontend (Vercel)**: [https://flow-talk-blond.vercel.app/](https://flow-talk-blond.vercel.app/)  
+🖥️ **Frontend (Vercel)**: [https://flow-talk-blond.vercel.app/](https://flow-talk-blond.vercel.app/)
 🌐 **Backend (Render)**:  [https://flowtalk-na0g.onrender.com](https://flowtalk-na0g.onrender.com)
 
 ---
@@ -38,7 +44,7 @@ FlashChat is built around the philosophy of **truly temporary communication**:
 
 Perfect for:
 - Quick team discussions
-- Temporary project coordination  
+- Temporary project coordination
 - Private conversations that shouldn't leave traces
 - Anonymous group chats
 - Brainstorming sessions
@@ -84,7 +90,7 @@ FlashChat/
 
 ## ⚙️ Getting Started (Local Development)
 
-1. **Clone the repository**  
+1. **Clone the repository**
    ```bash
    git clone https://github.com/the-vishh/FlashChat.git
    cd FlashChat
@@ -224,7 +230,7 @@ Built with ❤️ by [@the-vishh](https://github.com/the-vishh)
 
 If you find FlashChat useful, please consider:
 - ⭐ Starring this repository
-- 🍴 Forking for your own projects  
+- 🍴 Forking for your own projects
 - 🐛 Reporting bugs or suggesting features
 - 💬 Sharing with others who need ephemeral chat
 
