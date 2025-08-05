@@ -1,5 +1,11 @@
-// FlowTalk Client-Side JavaScript
-const socket = io("https://flowtalk-na0g.onrender.com");
+// FlashChat Client-Side JavaScript
+// Auto-detect if running locally or in production
+const socket = io(
+  window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+    ? "http://localhost:3000"
+    : "https://flowtalk-na0g.onrender.com"
+);
 
 // DOM Elements
 const loginContainer = document.getElementById("login-container");
@@ -17,33 +23,79 @@ const leaveRoomBtn = document.getElementById("leave-room");
 // Current user data
 let currentUser = "";
 let currentRoom = "";
+let isJoining = false;
+
+// Create error message element
+function createErrorMessage(message) {
+  // Remove existing error messages
+  const existingErrors = document.querySelectorAll(".error-message");
+  existingErrors.forEach((error) => error.remove());
+
+  const errorDiv = document.createElement("div");
+  errorDiv.className = "error-message";
+  errorDiv.style.cssText = `
+    color: #ff4444;
+    background: #ffe6e6;
+    border: 1px solid #ffcccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 14px;
+  `;
+  errorDiv.textContent = message;
+
+  loginForm.insertBefore(errorDiv, loginForm.firstChild);
+
+  // Auto-remove after 5 seconds
+  setTimeout(() => {
+    if (errorDiv.parentNode) {
+      errorDiv.remove();
+    }
+  }, 5000);
+}
 
 // Login Form Handler
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
+  if (isJoining) return; // Prevent multiple join attempts
+
   const username = usernameInput.value.trim();
   const room = roomInput.value.trim();
 
-  if (username && room) {
-    currentUser = username;
-    currentRoom = room;
-
-    // Join the room
-    socket.emit("join-room", { username, room });
-
-    // Show chat container and hide login
-    loginContainer.style.display = "none";
-    chatContainer.style.display = "flex";
-
-    // Update room title
-    roomTitle.textContent = `Room: ${room}`;
-
-    // Focus on message input
-    setTimeout(() => {
-      messageInput.focus();
-    }, 100);
+  if (!username || !room) {
+    createErrorMessage("Please enter both username and room name");
+    return;
   }
+
+  if (username.length > 20) {
+    createErrorMessage("Username must be 20 characters or less");
+    return;
+  }
+
+  if (room.length > 30) {
+    createErrorMessage("Room name must be 30 characters or less");
+    return;
+  }
+
+  // Validate username (no special characters that could cause issues)
+  const usernameRegex = /^[a-zA-Z0-9_-]+$/;
+  if (!usernameRegex.test(username)) {
+    createErrorMessage(
+      "Username can only contain letters, numbers, underscores, and hyphens"
+    );
+    return;
+  }
+
+  isJoining = true;
+
+  // Disable form while joining
+  usernameInput.disabled = true;
+  roomInput.disabled = true;
+
+  // Join the room
+  console.log("Sending join-room event:", { username, room });
+  socket.emit("join-room", { username, room });
 });
 
 // Message Form Handler
@@ -52,7 +104,7 @@ messageForm.addEventListener("submit", (e) => {
 
   const message = messageInput.value.trim();
 
-  if (message) {
+  if (message && currentUser && currentRoom) {
     // Send message to server
     socket.emit("chat-message", {
       username: currentUser,
@@ -70,15 +122,25 @@ messageForm.addEventListener("submit", (e) => {
 
 // Leave Room Handler
 leaveRoomBtn.addEventListener("click", () => {
-  socket.emit("leave-room", { username: currentUser, room: currentRoom });
+  if (currentUser && currentRoom) {
+    socket.emit("leave-room", { username: currentUser, room: currentRoom });
+  }
 
+  resetToLogin();
+});
+
+// Reset to login screen
+function resetToLogin() {
   // Reset UI
   loginContainer.style.display = "flex";
   chatContainer.style.display = "none";
   messagesDiv.innerHTML = "";
   usersList.innerHTML = "";
-  usernameInput.value = "";
-  roomInput.value = "";
+
+  // Re-enable form
+  usernameInput.disabled = false;
+  roomInput.disabled = false;
+  isJoining = false;
 
   // Reset current user data
   currentUser = "";
@@ -88,9 +150,53 @@ leaveRoomBtn.addEventListener("click", () => {
   setTimeout(() => {
     usernameInput.focus();
   }, 100);
-});
+}
 
 // Socket Event Listeners
+
+// Join success
+socket.on("join-success", (data) => {
+  console.log("Join success received:", data);
+  currentUser = data.username;
+  currentRoom = data.room;
+
+  // Show chat container and hide login
+  loginContainer.style.display = "none";
+  chatContainer.style.display = "flex";
+
+  // Update room title
+  roomTitle.textContent = `Room: ${data.room}`;
+
+  // Clear any error messages
+  const existingErrors = document.querySelectorAll(".error-message");
+  existingErrors.forEach((error) => error.remove());
+
+  // Focus on message input
+  setTimeout(() => {
+    messageInput.focus();
+  }, 100);
+
+  isJoining = false;
+});
+
+// Username taken error
+socket.on("username-taken", (data) => {
+  createErrorMessage(data.message);
+  usernameInput.disabled = false;
+  roomInput.disabled = false;
+  isJoining = false;
+  usernameInput.focus();
+  usernameInput.select();
+});
+
+// Join error
+socket.on("join-error", (data) => {
+  createErrorMessage(data.message);
+  usernameInput.disabled = false;
+  roomInput.disabled = false;
+  isJoining = false;
+  usernameInput.focus();
+});
 
 // User joined room
 socket.on("user-joined", (data) => {
@@ -116,7 +222,14 @@ socket.on("room-users", (users) => {
 
 // Connection status
 socket.on("connect", () => {
-  console.log("Connected to server");
+  console.log("Connected to server", socket.id);
+  // Remove any connection error messages
+  const errorMessages = document.querySelectorAll(".error-message");
+  errorMessages.forEach((msg) => {
+    if (msg.textContent.includes("Unable to connect")) {
+      msg.remove();
+    }
+  });
 });
 
 socket.on("disconnect", () => {
@@ -131,6 +244,19 @@ socket.on("reconnect", () => {
   // Rejoin room if we were in one
   if (currentUser && currentRoom) {
     socket.emit("join-room", { username: currentUser, room: currentRoom });
+  }
+});
+
+// Connection error
+socket.on("connect_error", (error) => {
+  console.log("Connection error:", error);
+  if (isJoining) {
+    createErrorMessage(
+      "Unable to connect to server. Please ensure the server is running and try again."
+    );
+    usernameInput.disabled = false;
+    roomInput.disabled = false;
+    isJoining = false;
   }
 });
 
@@ -248,6 +374,15 @@ usernameInput.addEventListener("keypress", function (e) {
 roomInput.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
     e.preventDefault();
-    loginForm.dispatchEvent(new Event("submit"));
+    if (!isJoining) {
+      loginForm.dispatchEvent(new Event("submit"));
+    }
+  }
+});
+
+// Handle browser back button or page refresh
+window.addEventListener("beforeunload", (e) => {
+  if (currentUser && currentRoom) {
+    socket.emit("leave-room", { username: currentUser, room: currentRoom });
   }
 });
